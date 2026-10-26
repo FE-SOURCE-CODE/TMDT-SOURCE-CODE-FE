@@ -1,122 +1,72 @@
-import { useState } from 'react'
-import heroImg from './assets/hero.png'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
+import DashboardSidebar from './components/DashboardSidebar';
+import DashboardPage from './pages/dashboard/DashboardPage';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
-        </div>
-        <div>
-          <h1>Get started</h1>
-          <p>
-            Edit <code>src/App.jsx</code> and save to test <code>HMR</code>
-          </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+    <div className="app-container bg-light min-vh-100">
+      {/* thanh header topcode */}
+      <nav className="navbar navbar-expand-lg navbar-dark bg-white border-bottom shadow-sm py-2 sticky-top">
+        <div className="container-fluid px-3 px-md-4">
+          {/* logo code */}
+          <Link to="/dashboard" className="navbar-brand d-flex align-items-center me-4">
+            <img src="/favicon.png" alt="Logo" width="32" height="32" className="me-2 rounded" />
+            <span className="fw-bold fs-4 text-danger">CODE</span>
+          </Link>
 
-      <div className="ticks"></div>
+          {/* 2 nut nap tien va upload */}
+          <div className="d-flex align-items-center gap-2">
+            <button className="btn btn-success btn-sm fw-bold px-3">
+              <i className="bi bi-wallet2 me-1"></i> NẠP TIỀN
+            </button>
+            <button className="btn btn-danger btn-sm fw-bold px-3">
+              <i className="bi bi-cloud-arrow-up-fill me-1"></i> UPLOAD
+            </button>
+          </div>
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+          <div className="d-flex align-items-center ms-auto gap-3">
+            <Link to="/dashboard" className="text-decoration-none text-muted small d-none d-md-flex align-items-center">
+              <i className="bi bi-bell-fill text-secondary me-1"></i> Thông báo
+              <span className="badge bg-danger rounded-pill ms-1">0</span>
+            </Link>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
-  )
+            <Link to="/dashboard" className="text-decoration-none text-muted small d-none d-md-flex align-items-center">
+              <i className="bi bi-chat-dots-fill text-secondary me-1"></i> Bình luận
+              <span className="badge bg-success rounded-pill ms-1">0</span>
+            </Link>
+
+            <div className="d-flex align-items-center gap-2 border-start ps-3">
+              <span className="fw-bold text-dark small">Nhân Trương</span>
+              <div 
+                className="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center"
+                style={{ width: '32px', height: '32px' }}
+              >
+                <i className="bi bi-person text-secondary"></i>
+              </div>
+              <span className="text-danger small ms-1" role="button">[Thoát]</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      {/* chia 2 cot: sidebar trai va noi dung phai */}
+      <div className="container-fluid px-3 px-md-4 py-3">
+        <div className="row g-3">
+          <div className="col-lg-3 col-xl-2">
+            <DashboardSidebar />
+          </div>
+
+          <div className="col-lg-9 col-xl-10">
+            <Routes>
+              <Route path="/" element={<Navigate to="/dashboard" replace />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App;
