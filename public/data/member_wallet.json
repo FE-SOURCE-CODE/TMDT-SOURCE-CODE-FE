@@ -1,0 +1,44 @@
+{
+  "thanhVien": {
+    "hoTen": "NHÂN TRƯƠNG",
+    "maThanhVien": "tco185101",
+    "email": "nhannhd1004@gmail.com",
+    "sdt": "",
+    "linkTrangCaNhan": "/dashboard/thong-tin",
+    "ngayThamGia": "2026-10-20",
+    "trangThai": "active"
+  },
+  "soDu": {
+    "taiKhoan": 0,
+    "tamGiu": 0,
+    "khaDung": 0,
+    "donVi": "đ"
+  },
+  "thongKe": {
+    "codeUpload": 0,
+    "codeDaBan": 0,
+    "danhGia": "0/5",
+    "soLuotDanhGia": 0
+  },
+  "quyDinhTamGiu": {
+    "soGiaoDich": 0,
+    "ghiChu": "Code vừa bán mặc định tạm giữ 3 ngày, Bán code >= 500.000đ tạm giữ 4 ngày",
+    "giaiThich": "Số tiền bị đóng băng cho giao dịch vừa bán code, chờ hỗ trợ hoàn tất giữa người bán và người mua"
+  },
+  "badges": {
+    "thongBao": 0,
+    "binhLuan": 0
+  },
+  "lichSuNapTien": [
+    {
+      "id": "GD1001",
+      "ngay": "2026-10-22 10:15:30",
+      "hinhThuc": "VietQR Ngân hàng",
+      "soTien": 0,
+      "maGiaoDich": "TOPCODE_tco185101_INIT",
+      "trangThai": "Thành công"
+    }
+  ],
+  "codeDaMua": [],
+  "lichSuRutTien": []
+}
