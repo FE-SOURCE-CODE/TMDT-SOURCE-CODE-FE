@@ -1,6 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function DashboardSidebar() {
+  const wallet = useSelector((state: any) => state?.wallet);
+  const thanhVien = wallet?.thanhVien || { hoTen: 'NHÂN TRƯƠNG' };
+  const soDu = wallet?.soDu || { taiKhoan: 0, tamGiu: 0, khaDung: 0 };
+
   return (
     <div className="dashboard-sidebar border p-2 mb-3">
       {/* avatar va ten user */}
@@ -8,19 +13,19 @@ function DashboardSidebar() {
         <div className="avatar-box">
           <i className="bi bi-person-fill"></i>
         </div>
-        <h6 className="fw-bold mb-1 text-danger">NHÂN TRƯƠNG</h6>
+        <h6 className="fw-bold mb-1 text-danger">{thanhVien.hoTen}</h6>
         <div className="small text-start mt-2 px-2">
           <div className="d-flex justify-content-between">
             <span className="text-muted">Tài khoản:</span>
-            <span className="text-danger fw-bold">0đ</span>
+            <span className="text-danger fw-bold">{Number(soDu.taiKhoan || 0).toLocaleString()}đ</span>
           </div>
           <div className="d-flex justify-content-between">
             <span className="text-muted">Tạm giữ:</span>
-            <span className="text-warning fw-bold">0đ</span>
+            <span className="text-warning fw-bold">{Number(soDu.tamGiu || 0).toLocaleString()}đ</span>
           </div>
           <div className="d-flex justify-content-between">
             <span className="text-muted">Khả dụng:</span>
-            <span className="text-success fw-bold">0đ</span>
+            <span className="text-success fw-bold">{Number(soDu.khaDung || 0).toLocaleString()}đ</span>
           </div>
         </div>
       </div>

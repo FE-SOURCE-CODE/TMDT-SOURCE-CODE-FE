@@ -9,14 +9,18 @@ const initialState = {
     sdt: '',
   },
   soDu: {
-    taiKhoan: 0,
-    tamGiu: 0,
-    khaDung: 0,
+    taiKhoan: 500000,
+    tamGiu: 150000,
+    khaDung: 350000,
   },
   thongKe: {
-    codeUpload: 0,
-    codeDaBan: 0,
-    danhGia: '0/5',
+    codeUpload: 4,
+    codeDaBan: 2,
+    danhGia: '4.5/5',
+  },
+  badges: {
+    thongBao: 2,
+    binhLuan: 1,
   },
   daCapNhatSdt: false,
 };

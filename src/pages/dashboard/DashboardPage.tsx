@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 function DashboardPage() {
+  const wallet = useSelector((state: any) => state?.wallet);
+  const thanhVien = wallet?.thanhVien || { hoTen: 'NHÂN TRƯƠNG', maThanhVien: 'tco185101', email: 'nhannhd1004@gmail.com', sdt: '' };
+  const soDu = wallet?.soDu || { taiKhoan: 0, tamGiu: 0, khaDung: 0 };
+  const thongKe = wallet?.thongKe || { codeUpload: 0, codeDaBan: 0, danhGia: '0/5' };
+  const daCapNhatSdt = wallet?.daCapNhatSdt || false;
+
   return (
     <div className="dashboard-content">
       {/* duong dan trang */}
@@ -15,15 +22,17 @@ function DashboardPage() {
         </ol>
       </nav>
 
-      {/* thanh bao chua cap nhat sdt */}
-      <div className="alert-custom mb-3 d-flex align-items-center justify-content-between">
-        <div className="small">
-          Thông tin cá nhân của bạn chưa cập nhật Số điện thoại, vui lòng cập nhật Số điện thoại{' '}
-          <Link to="/dashboard/thong-tin" className="fw-bold text-success text-decoration-none">
-            TẠI ĐÂY !
-          </Link>
+      {/* thanh bao chua cap nhat sdt - an di neu da cap nhat */}
+      {!daCapNhatSdt && (
+        <div className="alert-custom mb-3 d-flex align-items-center justify-content-between">
+          <div className="small">
+            Thông tin cá nhân của bạn chưa cập nhật Số điện thoại, vui lòng cập nhật Số điện thoại{' '}
+            <Link to="/dashboard/thong-tin" className="fw-bold text-success text-decoration-none">
+              TẠI ĐÂY !
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       <h5 className="fw-bold text-danger text-uppercase mb-3 pb-2 border-bottom">
         Trang Tổng Quan
@@ -33,19 +42,19 @@ function DashboardPage() {
         {/* thong tin ca nhan */}
         <div className="col-lg-4">
           <div className="card shadow-sm border-0 h-100 text-center p-3">
-            <h6 className="fw-bold text-danger mb-2">NHÂN TRƯƠNG</h6>
+            <h6 className="fw-bold text-danger mb-2">{thanhVien.hoTen}</h6>
             <div className="avatar-large">
               <i className="bi bi-person-fill"></i>
             </div>
             
             <div className="mt-2 small">
               <div className="text-muted">MÃ THÀNH VIÊN</div>
-              <div className="fw-bold text-success fs-5">tco185101</div>
+              <div className="fw-bold text-success fs-5">{thanhVien.maThanhVien}</div>
             </div>
 
             <div className="small text-muted mt-2">
-              <div>nhannhd1004@gmail.com</div>
-              <div>SĐT: <span className="text-secondary">(Chưa cập nhật)</span></div>
+              <div>{thanhVien.email}</div>
+              <div>SĐT: <span className="text-secondary">{thanhVien.sdt || '(Chưa cập nhật)'}</span></div>
             </div>
 
             <div className="mt-3 pt-2 border-top small">
@@ -63,7 +72,7 @@ function DashboardPage() {
               <div className="stat-card card-red">
                 <i className="bi bi-cloud-arrow-up-fill fs-1 opacity-75"></i>
                 <div className="text-end">
-                  <div className="stat-number">0</div>
+                  <div className="stat-number">{thongKe.codeUpload}</div>
                   <div className="stat-label">Code upload</div>
                 </div>
               </div>
@@ -73,7 +82,7 @@ function DashboardPage() {
               <div className="stat-card card-green">
                 <i className="bi bi-cart-check-fill fs-1 opacity-75"></i>
                 <div className="text-end">
-                  <div className="stat-number">0</div>
+                  <div className="stat-number">{thongKe.codeDaBan}</div>
                   <div className="stat-label">Code đã bán</div>
                 </div>
               </div>
@@ -83,7 +92,7 @@ function DashboardPage() {
               <div className="stat-card card-orange">
                 <i className="bi bi-star-fill fs-1 opacity-75"></i>
                 <div className="text-end">
-                  <div className="stat-number">0/5</div>
+                  <div className="stat-number">{thongKe.danhGia}</div>
                   <div className="stat-label">Đánh giá (0)</div>
                 </div>
               </div>
@@ -96,15 +105,15 @@ function DashboardPage() {
               <div className="col-md-4 border-end">
                 <div className="d-flex justify-content-between mb-1">
                   <span className="text-muted">Tài khoản:</span>
-                  <span className="badge bg-danger">0đ</span>
+                  <span className="badge bg-danger">{Number(soDu.taiKhoan || 0).toLocaleString()}đ</span>
                 </div>
                 <div className="d-flex justify-content-between mb-1">
                   <span className="text-muted">Tạm giữ:</span>
-                  <span className="badge bg-warning text-dark">0đ</span>
+                  <span className="badge bg-warning text-dark">{Number(soDu.tamGiu || 0).toLocaleString()}đ</span>
                 </div>
                 <div className="d-flex justify-content-between">
                   <span className="text-muted">Khả dụng:</span>
-                  <span className="badge bg-success">0đ</span>
+                  <span className="badge bg-success">{Number(soDu.khaDung || 0).toLocaleString()}đ</span>
                 </div>
               </div>
 
