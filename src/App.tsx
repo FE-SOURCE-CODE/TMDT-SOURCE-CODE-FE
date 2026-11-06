@@ -1,6 +1,7 @@
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import DashboardSidebar from './components/DashboardSidebar';
 import DashboardPage from './pages/dashboard/DashboardPage';
+import ProductDetailPage from './pages/product/ProductDetailPage';
 
 function App() {
   return (
@@ -60,6 +61,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/code/:maCode" element={<ProductDetailPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
