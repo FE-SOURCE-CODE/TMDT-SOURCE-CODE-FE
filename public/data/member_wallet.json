@@ -35,7 +35,7 @@
       "ngay": "2026-10-24 09:15:30",
       "hinhThuc": "VietQR Ngân hàng",
       "soTien": 300000,
-      "maGiaoDich": "TOPCODE_tco185101_NAP300K",
+      "maGiaoDich": "CODE_tco185101_NAP300K",
       "trangThai": "Thành công"
     },
     {
@@ -43,7 +43,7 @@
       "ngay": "2026-10-27 14:20:10",
       "hinhThuc": "VietQR Ngân hàng",
       "soTien": 200000,
-      "maGiaoDich": "TOPCODE_tco185101_NAP200K",
+      "maGiaoDich": "CODE_tco185101_NAP200K",
       "trangThai": "Thành công"
     }
   ],

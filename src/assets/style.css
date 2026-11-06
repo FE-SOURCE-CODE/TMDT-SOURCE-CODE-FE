@@ -99,4 +99,26 @@ body {
   font-size: 11px;
 }
 
+.avatar-small {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #dee2e6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-deposit-backdrop {
+  background-color: rgba(0, 0, 0, 0.55);
+}
+
+.qr-container {
+  display: inline-block;
+}
+.qr-container .anh-qr {
+  max-height: 180px;
+  max-width: 100%;
+}
+
 /*# sourceMappingURL=style.css.map */
