@@ -1,0 +1,128 @@
+{
+  "danhSachCode": [
+    {
+      "id": "CODE201",
+      "maCode": "TC10294",
+      "tenCode": "Source code Website TMĐT Bán Quần Áo Full Stack React + NodeJS",
+      "danhMuc": "Website",
+      "ngonNgu": "Javascript",
+      "anh": "/favicon.png",
+      "anhDemo": ["/favicon.png", "/favicon.png", "/favicon.png"],
+      "ngayDang": "2026-10-20",
+      "loaiFile": "Full code",
+      "dungLuong": "1.23 GB",
+      "coSoDuLieu": "MySQL / SQL Server",
+      "luotTai": 15,
+      "luotXem": 320,
+      "phiTai": 250000,
+      "linkDemo": "https://demo.topcode.vn/quan-ao",
+      "linkDownload": "https://drive.google.com/file/d/demo-source-code-1",
+      "linkDuPhong": "https://www.mediafire.com/file/demo-source-code-1",
+      "moTa": "Website bán quần áo viết bằng React và NodeJS, có đầy đủ trang chủ, danh mục, giỏ hàng, thanh toán và trang quản trị.",
+      "chucNang": [
+        "Đăng ký, đăng nhập tài khoản",
+        "Tìm kiếm và lọc sản phẩm theo giá",
+        "Quản lý đơn hàng, sản phẩm, khách hàng"
+      ],
+      "huongDanCaiDat": [
+        "Giải nén file, mở bằng VS Code",
+        "Import file database.sql vào MySQL",
+        "Chạy lệnh npm install rồi npm start"
+      ],
+      "camKet": [
+        "Hỗ trợ cài đặt chạy thử",
+        "Code đúng như mô tả",
+        "Hỗ trợ qua Zalo trong 3 ngày"
+      ],
+      "nguoiBan": "NHÂN TRƯƠNG",
+      "emailNguoiBan": "nhannhd1004@gmail.com",
+      "sdtNguoiBan": "0912345678",
+      "soCodeDaBan": 2,
+      "danhGia": []
+    },
+    {
+      "id": "CODE202",
+      "maCode": "TC36495",
+      "tenCode": "Đồ án Quản Lý Thư Viện C# WinForm + SQL Server",
+      "danhMuc": "Phần mềm",
+      "ngonNgu": "Visual C#",
+      "anh": "/favicon.png",
+      "anhDemo": ["/favicon.png", "/favicon.png"],
+      "ngayDang": "2026-10-22",
+      "loaiFile": "Full code + Báo cáo",
+      "dungLuong": "56 MB",
+      "coSoDuLieu": "SQL Server",
+      "luotTai": 42,
+      "luotXem": 810,
+      "phiTai": 150000,
+      "linkDemo": "",
+      "linkDownload": "https://drive.google.com/file/d/demo-source-code-2",
+      "linkDuPhong": "",
+      "moTa": "Phần mềm quản lý thư viện cho đồ án môn học, có báo cáo Word đầy đủ.",
+      "chucNang": [
+        "Quản lý sách, độc giả",
+        "Mượn trả sách, tính tiền phạt",
+        "Thống kê sách mượn nhiều"
+      ],
+      "huongDanCaiDat": [
+        "Restore file QLThuVien.bak vào SQL Server",
+        "Sửa chuỗi kết nối trong App.config",
+        "Mở file .sln bằng Visual Studio rồi bấm Start"
+      ],
+      "camKet": [
+        "Code chạy được 100%",
+        "Hỗ trợ sửa lỗi kết nối database"
+      ],
+      "nguoiBan": "TÙNG DƯƠNG",
+      "emailNguoiBan": "letungduong.nvn@gmail.com",
+      "sdtNguoiBan": "0987654321",
+      "soCodeDaBan": 5,
+      "danhGia": [
+        {
+          "id": "DG001",
+          "nguoiDanhGia": "Minh Khoa",
+          "soSao": 5,
+          "noiDung": "Code chạy ngon, người bán hỗ trợ nhiệt tình.",
+          "ngay": "2026-10-25 20:10:00"
+        }
+      ]
+    },
+    {
+      "id": "CODE203",
+      "maCode": "TC40012",
+      "tenCode": "Game Flappy Bird Unity 2D có hướng dẫn",
+      "danhMuc": "Game",
+      "ngonNgu": "Unity",
+      "anh": "/favicon.png",
+      "anhDemo": ["/favicon.png"],
+      "ngayDang": "2026-10-28",
+      "loaiFile": "Full code",
+      "dungLuong": "210 MB",
+      "coSoDuLieu": "Không có",
+      "luotTai": 7,
+      "luotXem": 95,
+      "phiTai": 0,
+      "linkDemo": "",
+      "linkDownload": "https://drive.google.com/file/d/demo-source-code-3",
+      "linkDuPhong": "",
+      "moTa": "Game Flappy Bird làm bằng Unity, phù hợp cho người mới học làm game 2D.",
+      "chucNang": [
+        "Tính điểm, lưu điểm cao",
+        "Âm thanh và hiệu ứng"
+      ],
+      "huongDanCaiDat": [
+        "Mở project bằng Unity 2022",
+        "Mở scene Main rồi bấm Play"
+      ],
+      "camKet": [
+        "Miễn phí, không hỗ trợ cài đặt"
+      ],
+      "nguoiBan": "NHÂN TRƯƠNG",
+      "emailNguoiBan": "nhannhd1004@gmail.com",
+      "sdtNguoiBan": "0912345678",
+      "soCodeDaBan": 2,
+      "danhGia": []
+    }
+  ],
+  "danhSachYeuThich": []
+}
