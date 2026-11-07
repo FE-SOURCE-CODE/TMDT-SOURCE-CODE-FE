@@ -1,8 +1,36 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
+import { doiYeuThich } from '../../store/slices/detailSlice';
 
 function ProductDetailPage() {
+  const { maCode } = useParams();
+  const dispatch = useDispatch();
   const [tab, setTab] = useState('moTa');
+  const [anhDangXem, setAnhDangXem] = useState(0);
+
+  const detail = useSelector((state: any) => state?.detail);
+  const danhSachCode = detail?.danhSachCode || [];
+  const danhSachYeuThich = detail?.danhSachYeuThich || [];
+
+  // tim code theo ma tren duong dan
+  const code = danhSachCode.find((item) => item.maCode === maCode);
+  const daYeuThich = danhSachYeuThich.includes(maCode);
+
+  // khong tim thay code
+  if (!code) {
+    return (
+      <div className="card shadow-sm border-0 text-center text-muted py-5 small">
+        Không tìm thấy source code có mã {maCode}
+        <div className="mt-2">
+          <Link to="/" className="btn btn-outline-danger btn-sm rounded-pill">Về trang chủ</Link>
+        </div>
+      </div>
+    );
+  }
+
+  const anhDemo = code.anhDemo || [];
+  const danhGia = code.danhGia || [];
 
   return (
     <div className="product-detail">
@@ -15,33 +43,41 @@ function ProductDetailPage() {
             </Link>
           </li>
           <li className="breadcrumb-item">
-            <Link to="/" className="text-decoration-none text-muted">Website</Link>
+            <Link to="/" className="text-decoration-none text-muted">{code.danhMuc}</Link>
           </li>
-          <li className="breadcrumb-item active">Chi tiết code</li>
+          <li className="breadcrumb-item active">{code.maCode}</li>
         </ol>
       </nav>
 
       <h5 className="fw-bold text-danger mb-3 pb-2 border-bottom">
-        Source code Website TMĐT Bán Quần Áo Full Stack React + NodeJS
+        {code.tenCode}
       </h5>
 
       <div className="row g-3">
         {/* anh demo va nut xem live demo */}
         <div className="col-lg-7">
           <div className="card shadow-sm border-0 p-2">
-            <img src="/favicon.png" alt="Ảnh demo" className="anh-chinh" />
+            <img src={anhDemo[anhDangXem] || code.anh} alt={code.tenCode} className="anh-chinh" />
 
             <div className="d-flex gap-2 mt-2">
-              <img src="/favicon.png" alt="Ảnh 1" className="anh-nho" />
-              <img src="/favicon.png" alt="Ảnh 2" className="anh-nho" />
-              <img src="/favicon.png" alt="Ảnh 3" className="anh-nho" />
+              {anhDemo.map((anh, index) => (
+                <img
+                  key={index}
+                  src={anh}
+                  alt={'Ảnh ' + (index + 1)}
+                  className={index === anhDangXem ? 'anh-nho active' : 'anh-nho'}
+                  onClick={() => setAnhDangXem(index)}
+                />
+              ))}
             </div>
 
-            <div className="text-center mt-2">
-              <Link to="/" className="btn btn-danger btn-sm fw-bold px-4">
-                <i className="bi bi-display me-1"></i> Xem LIVE DEMO
-              </Link>
-            </div>
+            {code.linkDemo && (
+              <div className="text-center mt-2">
+                <a href={code.linkDemo} target="_blank" className="btn btn-danger btn-sm fw-bold px-4">
+                  <i className="bi bi-display me-1"></i> Xem LIVE DEMO
+                </a>
+              </div>
+            )}
           </div>
         </div>
 
@@ -52,34 +88,36 @@ function ProductDetailPage() {
               <tbody>
                 <tr>
                   <th className="table-light">Mã code</th>
-                  <td className="fw-bold text-success">TC10294</td>
+                  <td className="fw-bold text-success">{code.maCode}</td>
                 </tr>
                 <tr>
                   <th className="table-light">Ngày đăng</th>
-                  <td>2026-10-20</td>
+                  <td>{code.ngayDang}</td>
                 </tr>
                 <tr>
                   <th className="table-light">Loại file</th>
-                  <td>Full code</td>
+                  <td>{code.loaiFile}</td>
                 </tr>
                 <tr>
                   <th className="table-light">Dung lượng</th>
-                  <td>1.23 GB</td>
+                  <td>{code.dungLuong}</td>
                 </tr>
                 <tr>
                   <th className="table-light">Cơ sở dữ liệu</th>
-                  <td>MySQL / SQL Server</td>
+                  <td>{code.coSoDuLieu}</td>
                 </tr>
                 <tr>
                   <th className="table-light">Lượt tải</th>
-                  <td>15</td>
+                  <td>{code.luotTai}</td>
                 </tr>
               </tbody>
             </table>
 
             <div className="d-flex justify-content-between align-items-center mb-3">
               <span className="text-muted small">Phí download:</span>
-              <span className="gia-tien">250.000đ</span>
+              <span className="gia-tien">
+                {code.phiTai > 0 ? Number(code.phiTai).toLocaleString() + 'đ' : 'Miễn phí'}
+              </span>
             </div>
 
             <div className="d-grid gap-2">
@@ -89,8 +127,12 @@ function ProductDetailPage() {
               <Link to="/" className="btn btn-danger fw-bold">
                 <i className="bi bi-cloud-arrow-up-fill me-1"></i> ĐĂNG BÁN NGAY
               </Link>
-              <button className="btn btn-outline-danger btn-sm">
-                <i className="bi bi-heart me-1"></i> LƯU VÀO YÊU THÍCH
+              <button
+                className={daYeuThich ? 'btn btn-danger btn-sm' : 'btn btn-outline-danger btn-sm'}
+                onClick={() => dispatch(doiYeuThich(code.maCode))}
+              >
+                <i className={daYeuThich ? 'bi bi-heart-fill me-1' : 'bi bi-heart me-1'}></i>
+                {daYeuThich ? 'ĐÃ LƯU YÊU THÍCH' : 'LƯU VÀO YÊU THÍCH'}
               </button>
             </div>
           </div>
@@ -115,7 +157,7 @@ function ProductDetailPage() {
                 </li>
                 <li className="nav-item">
                   <button className={tab === 'danhGia' ? 'nav-link active fw-bold' : 'nav-link'} onClick={() => setTab('danhGia')}>
-                    Đánh giá & Bình luận
+                    Đánh giá & Bình luận ({danhGia.length})
                   </button>
                 </li>
               </ul>
@@ -125,11 +167,11 @@ function ProductDetailPage() {
               {/* tab mo ta */}
               {tab === 'moTa' && (
                 <div>
-                  <p>Website bán quần áo viết bằng React và NodeJS, có đầy đủ trang chủ, danh mục, giỏ hàng, thanh toán và trang quản trị.</p>
+                  <p>{code.moTa}</p>
                   <ul>
-                    <li>Đăng ký, đăng nhập tài khoản</li>
-                    <li>Tìm kiếm và lọc sản phẩm theo giá</li>
-                    <li>Quản lý đơn hàng, sản phẩm, khách hàng</li>
+                    {code.chucNang.map((item, index) => (
+                      <li key={index}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               )}
@@ -137,18 +179,29 @@ function ProductDetailPage() {
               {/* tab huong dan cai dat */}
               {tab === 'caiDat' && (
                 <ol>
-                  <li>Giải nén file, mở bằng VS Code</li>
-                  <li>Import file database.sql vào MySQL</li>
-                  <li>Chạy lệnh npm install rồi npm start</li>
+                  {code.huongDanCaiDat.map((item, index) => (
+                    <li key={index}>{item}</li>
+                  ))}
                 </ol>
               )}
 
               {/* tab danh gia */}
-              {tab === 'danhGia' && (
+              {tab === 'danhGia' && danhGia.length === 0 && (
                 <div className="text-center text-muted py-4">
                   Chưa có đánh giá nào
                 </div>
               )}
+
+              {tab === 'danhGia' && danhGia.map((item) => (
+                <div key={item.id} className="border-bottom pb-2 mb-2">
+                  <div className="d-flex justify-content-between">
+                    <span className="fw-bold">{item.nguoiDanhGia}</span>
+                    <span className="text-muted">{item.ngay}</span>
+                  </div>
+                  <div className="text-warning">{'★'.repeat(item.soSao)}</div>
+                  <div>{item.noiDung}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -160,16 +213,16 @@ function ProductDetailPage() {
               <i className="bi bi-shield-check me-1"></i> CAM KẾT CỦA NGƯỜI BÁN
             </div>
             <ul className="small mb-0 ps-3">
-              <li>Hỗ trợ cài đặt chạy thử</li>
-              <li>Code đúng như mô tả</li>
-              <li>Hỗ trợ qua Zalo trong 3 ngày</li>
+              {code.camKet.map((item, index) => (
+                <li key={index}>{item}</li>
+              ))}
             </ul>
           </div>
 
           <div className="card shadow-sm border-0 p-3 mt-3 small">
             <div className="text-muted">Người bán</div>
-            <div className="fw-bold text-danger">NHÂN TRƯƠNG</div>
-            <div className="text-muted">Đã bán: 2 code</div>
+            <div className="fw-bold text-danger">{code.nguoiBan}</div>
+            <div className="text-muted">Đã bán: {code.soCodeDaBan} code</div>
           </div>
         </div>
       </div>
