@@ -23,6 +23,24 @@ const initialState = {
     binhLuan: 1,
   },
   daCapNhatSdt: false,
+  lichSuNapTien: [
+    {
+      id: 'GD1001',
+      ngay: '2026-10-24 09:15:30',
+      hinhThuc: 'VietQR Ngân hàng',
+      soTien: 300000,
+      maGiaoDich: 'CODE_tco185101_NAP300K',
+      trangThai: 'Thành công',
+    },
+    {
+      id: 'GD1002',
+      ngay: '2026-10-27 14:20:10',
+      hinhThuc: 'VietQR Ngân hàng',
+      soTien: 200000,
+      maGiaoDich: 'CODE_tco185101_NAP200K',
+      trangThai: 'Thành công',
+    },
+  ],
 };
 
 const walletSlice = createSlice({
@@ -33,6 +51,20 @@ const walletSlice = createSlice({
     napTien: (state, action: PayloadAction<number>) => {
       state.soDu.khaDung += action.payload;
       state.soDu.taiKhoan += action.payload;
+
+      // them giao dich moi vao dau danh sach lich su
+      const d = new Date();
+      const ngayTao = d.toLocaleDateString('vi-VN') + ' ' + d.toLocaleTimeString('vi-VN');
+      const maGD = 'CODE_tco185101_NAP' + (action.payload / 1000) + 'K';
+
+      state.lichSuNapTien.unshift({
+        id: 'GD' + (state.lichSuNapTien.length + 1001),
+        ngay: ngayTao,
+        hinhThuc: 'VietQR Ngân hàng',
+        soTien: action.payload,
+        maGiaoDich: maGD,
+        trangThai: 'Thành công',
+      });
     },
     // cap nhat so dien thoai
     capNhatSdt: (state, action: PayloadAction<string>) => {

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import DashboardSidebar from './components/DashboardSidebar';
 import DashboardPage from './pages/dashboard/DashboardPage';
+import DepositHistoryPage from './pages/deposit/DepositHistoryPage';
 import DepositQrModal from './components/DepositQrModal';
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/dashboard/lich-su-nap" element={<DepositHistoryPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
