@@ -3,6 +3,7 @@ import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import DashboardSidebar from './components/DashboardSidebar';
 import DashboardPage from './pages/dashboard/DashboardPage';
 import DepositHistoryPage from './pages/deposit/DepositHistoryPage';
+import PurchasedCodesPage from './pages/purchased/PurchasedCodesPage';
 import DepositQrModal from './components/DepositQrModal';
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/dashboard/lich-su-nap" element={<DepositHistoryPage />} />
+              <Route path="/dashboard/code-da-mua" element={<PurchasedCodesPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>

@@ -41,6 +41,30 @@ const initialState = {
       trangThai: 'Thành công',
     },
   ],
+  codeDaMua: [
+    {
+      id: 'CODE201',
+      maCode: 'TC10294',
+      tenCode: 'Source code Website TMĐT Bán Quần Áo Full Stack React + NodeJS',
+      anh: '/favicon.png',
+      ngayMua: '2026-10-25 11:30:00',
+      phiTai: 150000,
+      nguoiBan: 'NHÂN TRƯƠNG',
+      sdtNguoiBan: '0912345678',
+      linkDownload: 'https://drive.google.com/file/d/demo-source-code-1',
+    },
+    {
+      id: 'CODE202',
+      maCode: 'TC36495',
+      tenCode: 'Đồ án Quản Lý Thư Viện C# WinForm + SQL Server',
+      anh: '/favicon.png',
+      ngayMua: '2026-10-29 15:45:00',
+      phiTai: 150000,
+      nguoiBan: 'TÙNG DƯƠNG',
+      sdtNguoiBan: '0987654321',
+      linkDownload: 'https://drive.google.com/file/d/demo-source-code-2',
+    },
+  ],
 };
 
 const walletSlice = createSlice({

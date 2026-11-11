@@ -121,4 +121,12 @@ body {
   max-width: 100%;
 }
 
+.purchased-codes .anh-code-nho {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #e9ecef;
+}
+
 /*# sourceMappingURL=style.css.map */
