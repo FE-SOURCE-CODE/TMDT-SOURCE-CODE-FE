@@ -195,4 +195,13 @@ body{
     // không cho bôi đen để copy mã
     user-select: none;
   }
+
+  .hop-link{
+    background-color: #f1f8f4;
+    border: 1px dashed $color-green;
+    border-radius: 6px;
+    padding: 8px 12px;
+    // link Drive rất dài nên cho xuống dòng để không tràn khung
+    word-break: break-all;
+  }
 }
