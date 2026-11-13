@@ -92,7 +92,23 @@ function HomePage() {
                     </div>
                 </div>
 
+                <div className="col-lg-3 order-3">
+                    <div className="card shadow-sm border-0 h-100">
+                        <div className="card-header bg-success text-white fw-bold small">
+                            <i className="bi bi-activity me-1"></i> HOẠT ĐỘNG GẦN ĐÂY
+                        </div>
+                        <ul className="list-group list-group-flush small">
+                            {hdHienThi.map((h, i) => (
+                                <li key={h.id + '-' + i} className="list-group-item hd-item">
+                                    <i className={iconHD(h.loai) + ' me-2'}></i>
+                                    {h.nd}
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
             </div>
+
         </div>
     );
 }
