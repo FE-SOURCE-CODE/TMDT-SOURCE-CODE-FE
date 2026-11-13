@@ -77,6 +77,21 @@ function HomePage() {
                     </div>
                 </div>
 
+                <div className="col-lg-6 order-1 order-lg-2">
+                    <div className={'banner ' + banners[bn].bg}>
+                        <h4 className="fw-bold">{banners[bn].tt}</h4>
+                        <p className="mb-3">{banners[bn].nd}</p>
+                        <Link to="/kho-code" className="btn btn-light btn-sm fw-bold">
+                            XEM KHO CODE <i className="bi bi-arrow-right"></i>
+                        </Link>
+                        <div className="dots">
+                            {banners.map((b, i) => (
+                                <span key={i} className={i === bn ? 'dot on' : 'dot'} onClick={() => setBn(i)}></span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
     );
