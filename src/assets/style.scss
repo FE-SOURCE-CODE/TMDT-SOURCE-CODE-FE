@@ -159,3 +159,40 @@ body{
     border-radius: 4px;
   }
 }
+
+// popup xác nhận download, nền tối thay cho modal-backdrop vì không dùng JS của Bootstrap
+.download-modal{
+  background-color: rgba(0, 0, 0, 0.5);
+
+  .phep-tru{
+    border: 1px solid $border-color;
+    border-radius: 6px;
+    padding: 8px 12px;
+
+    .dong{
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .tong{
+      border-top: 1px dashed $border-color;
+      margin-top: 4px;
+      padding-top: 8px;
+      font-size: 15px;
+    }
+  }
+
+  .o-captcha{
+    background-color: #e9ecef;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+    padding: 4px 12px;
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: bold;
+    letter-spacing: 4px;
+    // không cho bôi đen để copy mã
+    user-select: none;
+  }
+}
