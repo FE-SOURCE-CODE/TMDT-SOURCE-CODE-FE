@@ -54,5 +54,31 @@ function HomePage() {
         return 'bi bi-cash-coin text-warning';
     };
 
+    return (
+        <div className="home-page">
+            <div className="row g-3">
+                <div className="col-lg-3 order-2 order-lg-1">
+                    <div className="card shadow-sm border-0 h-100">
+                        <div className="card-header bg-danger text-white fw-bold small">
+                            <i className="bi bi-list me-1"></i> DANH MỤC NGÔN NGỮ
+                        </div>
+                        <div className="list-group list-group-flush small">
+                            {dsNN.map((nn) => (
+                                <Link
+                                    key={nn}
+                                    to={'/kho-code?nn=' + encodeURIComponent(nn)}
+                                    className="list-group-item list-group-item-action d-flex justify-content-between align-items-center"
+                                >
+                                    {nn}
+                                    <i className="bi bi-chevron-right small text-muted"></i>
+                                </Link>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    );
 }
 export default HomePage;
