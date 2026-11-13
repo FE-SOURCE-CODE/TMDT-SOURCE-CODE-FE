@@ -2,12 +2,14 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { doiYeuThich } from '../../store/slices/detailSlice';
+import DownloadModal from '../../components/DownloadModal';
 
 function ProductDetailPage() {
   const { maCode } = useParams();
   const dispatch = useDispatch();
   const [tab, setTab] = useState('moTa');
   const [anhDangXem, setAnhDangXem] = useState(0);
+  const [moPopup, setMoPopup] = useState(false);
 
   const detail = useSelector((state: any) => state?.detail);
   const danhSachCode = detail?.danhSachCode || [];
@@ -121,7 +123,7 @@ function ProductDetailPage() {
             </div>
 
             <div className="d-grid gap-2">
-              <button className="btn btn-success fw-bold">
+              <button className="btn btn-success fw-bold" onClick={() => setMoPopup(true)}>
                 <i className="bi bi-download me-1"></i> DOWNLOAD NGAY
               </button>
               <Link to="/" className="btn btn-danger fw-bold">
@@ -226,6 +228,8 @@ function ProductDetailPage() {
           </div>
         </div>
       </div>
+
+      {moPopup && <DownloadModal code={code} onClose={() => setMoPopup(false)} />}
     </div>
   );
 }
