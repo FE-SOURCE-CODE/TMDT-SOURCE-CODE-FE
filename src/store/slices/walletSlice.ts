@@ -48,10 +48,12 @@ const initialState = {
       tenCode: 'Source code Website TMĐT Bán Quần Áo Full Stack React + NodeJS',
       anh: '/favicon.png',
       ngayMua: '2026-10-25 11:30:00',
-      phiTai: 150000,
+      phiTai: 250000,
       nguoiBan: 'NHÂN TRƯƠNG',
       sdtNguoiBan: '0912345678',
       linkDownload: 'https://drive.google.com/file/d/demo-source-code-1',
+      soSao: 5,
+      nhanXet: 'Code chạy tốt, giao diện đẹp đúng mô tả.',
     },
     {
       id: 'CODE202',
@@ -63,6 +65,60 @@ const initialState = {
       nguoiBan: 'TÙNG DƯƠNG',
       sdtNguoiBan: '0987654321',
       linkDownload: 'https://drive.google.com/file/d/demo-source-code-2',
+      soSao: 0,
+      nhanXet: '',
+    },
+    {
+      id: 'CODE203',
+      maCode: 'TC40012',
+      tenCode: 'Game Flappy Bird Unity 2D có hướng dẫn',
+      anh: '/favicon.png',
+      ngayMua: '2026-11-01 08:20:00',
+      phiTai: 0,
+      nguoiBan: 'NHÂN TRƯƠNG',
+      sdtNguoiBan: '0912345678',
+      linkDownload: 'https://drive.google.com/file/d/demo-source-code-3',
+      soSao: 5,
+      nhanXet: 'Game dễ hiểu cho người mới học Unity.',
+    },
+    {
+      id: 'CODE204',
+      maCode: 'TC51208',
+      tenCode: 'Source code Web Bán Điện Thoại Spring Boot + MySQL',
+      anh: '/favicon.png',
+      ngayMua: '2026-11-04 19:10:00',
+      phiTai: 300000,
+      nguoiBan: 'TÙNG DƯƠNG',
+      sdtNguoiBan: '0987654321',
+      linkDownload: 'https://drive.google.com/file/d/demo-source-code-4',
+      soSao: 0,
+      nhanXet: '',
+    },
+    {
+      id: 'CODE205',
+      maCode: 'TC62319',
+      tenCode: 'Ứng dụng Quản Lý Chi Tiêu Cá Nhân Android Java',
+      anh: '/favicon.png',
+      ngayMua: '2026-11-07 14:05:00',
+      phiTai: 120000,
+      nguoiBan: 'MINH ĐÀO',
+      sdtNguoiBan: '0933445566',
+      linkDownload: 'https://drive.google.com/file/d/demo-source-code-5',
+      soSao: 4,
+      nhanXet: 'App chạy ổn trên máy ảo Android Studio.',
+    },
+    {
+      id: 'CODE206',
+      maCode: 'TC78410',
+      tenCode: 'Website Đặt Lịch Khám Bệnh PHP Laravel + Bootstrap 5',
+      anh: '/favicon.png',
+      ngayMua: '2026-11-10 21:15:00',
+      phiTai: 200000,
+      nguoiBan: 'TÙNG DƯƠNG',
+      sdtNguoiBan: '0987654321',
+      linkDownload: 'https://drive.google.com/file/d/demo-source-code-6',
+      soSao: 0,
+      nhanXet: '',
     },
   ],
 };
@@ -95,8 +151,19 @@ const walletSlice = createSlice({
       state.thanhVien.sdt = action.payload;
       state.daCapNhatSdt = true;
     },
+    // luu danh gia sao cho code da mua
+    danhGiaCode: (state, action: PayloadAction<any>) => {
+      const { id, soSao, nhanXet } = action.payload;
+      for (let i = 0; i < state.codeDaMua.length; i++) {
+        if (state.codeDaMua[i].id === id) {
+          state.codeDaMua[i].soSao = soSao;
+          state.codeDaMua[i].nhanXet = nhanXet;
+          break;
+        }
+      }
+    },
   },
 });
 
-export const { napTien, capNhatSdt } = walletSlice.actions;
+export const { napTien, capNhatSdt, danhGiaCode } = walletSlice.actions;
 export default walletSlice.reducer;
