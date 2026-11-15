@@ -162,8 +162,14 @@ const walletSlice = createSlice({
         }
       }
     },
+    // tru tien kha dung va them code vao danh sach da mua
+    muaCode: (state, action: PayloadAction<any>) => {
+      state.soDu.khaDung -= action.payload.phiTai;
+      state.soDu.taiKhoan -= action.payload.phiTai;
+      state.codeDaMua.unshift(action.payload);
+    },
   },
 });
 
-export const { napTien, capNhatSdt, danhGiaCode } = walletSlice.actions;
+export const { napTien, capNhatSdt, danhGiaCode, muaCode } = walletSlice.actions;
 export default walletSlice.reducer;

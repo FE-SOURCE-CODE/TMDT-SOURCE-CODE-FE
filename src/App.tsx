@@ -5,6 +5,7 @@ import DashboardPage from './pages/dashboard/DashboardPage';
 import DepositHistoryPage from './pages/deposit/DepositHistoryPage';
 import PurchasedCodesPage from './pages/purchased/PurchasedCodesPage';
 import DepositQrModal from './components/DepositQrModal';
+import ProductDetailPage from './pages/product/ProductDetailPage';
 
 function App() {
   const [showDepositModal, setShowDepositModal] = useState(false);
@@ -68,6 +69,8 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/dashboard/lich-su-nap" element={<DepositHistoryPage />} />
               <Route path="/dashboard/code-da-mua" element={<PurchasedCodesPage />} />
+              <Route path="/code/:maCode" element={<ProductDetailPage />} />
+              <Route path="/detail/:maCode" element={<ProductDetailPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
