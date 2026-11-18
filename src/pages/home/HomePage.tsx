@@ -108,6 +108,31 @@ function HomePage() {
                     </div>
                 </div>
             </div>
+            <div className="row g-3 mt-1">
+                {camKet.map((c) => (
+                    <div key={c.tt} className="col-6 col-lg-3">
+                        <div className="card shadow-sm border-0 p-3 d-flex flex-row align-items-center">
+                            <i className={'bi ' + c.icon + ' fs-2 text-danger me-3'}></i>
+                            <div>
+                                <div className="fw-bold small">{c.tt}</div>
+                                <div className="text-muted sub-small">{c.nd}</div>
+                            </div>
+                        </div>
+                    </div>
+                ))}
+            </div>
+
+            <div className="d-flex justify-content-between align-items-center mt-4 mb-2 pb-2 border-bottom">
+                <h6 className="fw-bold text-danger mb-0">SOURCE CODE MỚI NHẤT</h6>
+                <Link to="/kho-code" className="small text-decoration-none">Xem tất cả &gt;&gt;</Link>
+            </div>
+            <div className="row g-3">
+                {moi.map((c) => (
+                    <div key={c.id} className="col-6 col-md-4 col-xl-3">
+                        <CodeCard c={c} kieu="luoi" />
+                    </div>
+                ))}
+            </div>
 
         </div>
     );
