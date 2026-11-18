@@ -126,7 +126,7 @@ function ProductDetailPage() {
               <button className="btn btn-success fw-bold" onClick={() => setMoPopup(true)}>
                 <i className="bi bi-download me-1"></i> DOWNLOAD NGAY
               </button>
-              <Link to="/" className="btn btn-danger fw-bold">
+              <Link to="/dashboard/dang-ban" className="btn btn-danger fw-bold">
                 <i className="bi bi-cloud-arrow-up-fill me-1"></i> ĐĂNG BÁN NGAY
               </Link>
               <button

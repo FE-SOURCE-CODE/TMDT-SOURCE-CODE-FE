@@ -239,3 +239,38 @@ body{
     word-break: break-all;
   }
 }
+
+// form đăng bán code
+.upload-code{
+  .tieu-de-nhom{
+    font-weight: bold;
+    color: $primary-color;
+    text-transform: uppercase;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
+  .khung-anh{
+    @include flex-center;
+    height: 120px;
+    background-color: #e9ecef;
+    border: 1px dashed $border-color;
+    border-radius: 6px;
+    overflow: hidden;
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .anh-demo-nho{
+    width: 90px;
+    height: 68px;
+    object-fit: cover;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+}
