@@ -133,7 +133,17 @@ function HomePage() {
                     </div>
                 ))}
             </div>
-
+            <div className="d-flex justify-content-between align-items-center mt-4 mb-2 pb-2 border-bottom">
+                <h6 className="fw-bold text-danger mb-0">SOURCE CODE NỔI BẬT</h6>
+                <Link to="/top-code" className="small text-decoration-none">Xem bảng xếp hạng &gt;&gt;</Link>
+            </div>
+            <div className="row g-3">
+                {noiBat.map((c) => (
+                    <div key={c.id} className="col-6 col-md-4 col-xl-3">
+                        <CodeCard c={c} kieu="luoi" />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
