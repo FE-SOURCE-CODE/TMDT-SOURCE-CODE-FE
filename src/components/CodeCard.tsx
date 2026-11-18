@@ -47,6 +47,30 @@ function CodeCard({ c, kieu }: any) {
             </div>
         );
     }
-    ;
+    return (
+        <div className="card code-card h-100 shadow-sm border-0">
+            <img src={c.anh} alt={c.tenCode} className="thumb" />
+            <div className="card-body p-2">
+                <div className="small text-success fw-bold">{c.maCode}</div>
+                <Link to={ctLink} className="ten-code text-dark text-decoration-none fw-bold small">
+                    {c.tenCode}
+                </Link>
+                <div className="text-warning small mt-1">
+                    {sao(c.diemSao)} <span className="text-muted">({c.soDanhGia})</span>
+                </div>
+                <div className="d-flex justify-content-between align-items-center mt-1">
+                    <span className="text-danger fw-bold">{fmtGia(c.phiTai)}</span>
+                    <span className="small text-muted">
+            <i className="bi bi-download me-1"></i>
+                        {c.luotTai}
+          </span>
+                </div>
+            </div>
+            <div className="card-footer bg-white border-0 pt-0 d-flex gap-1">
+                <Link to={demoLink} className={demoCls + ' flex-fill'}>Xem thử</Link>
+                <Link to={ctLink} className="btn btn-success btn-sm flex-fill">Chi tiết</Link>
+            </div>
+        </div>
+    );
 }
 export default CodeCard;
