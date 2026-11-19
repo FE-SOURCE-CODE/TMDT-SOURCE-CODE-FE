@@ -79,7 +79,10 @@ function SearchPage() {
                             <input className="form-check-input" type="radio" name="che" id="cheTen" checked={che === 'tu-khoa'} onChange={() => dispatch(setCheDoTim('tu-khoa'))} />
                             <label className="form-check-label" htmlFor="cheTen">Theo từ khóa</label>
                         </div>
-
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="che" id="cheMa" checked={che === 'ma'} onChange={() => dispatch(setCheDoTim('ma'))} />
+                            <label className="form-check-label" htmlFor="cheMa">Theo mã code</label>
+                        </div>
                     </div>
                 </form>
             </div>
