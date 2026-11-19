@@ -45,7 +45,24 @@ function SearchPage() {
         }
     }
 
+    return (
+        <div className="search-page">
+            <nav className="mb-3 small">
+                <ol className="breadcrumb mb-0">
+                    <li className="breadcrumb-item">
+                        <Link to="/" className="text-decoration-none text-muted">
+                            <i className="bi bi-house-door-fill me-1"></i>Trang chủ
+                        </Link>
+                    </li>
+                    <li className="breadcrumb-item active">Tìm kiếm</li>
+                </ol>
+            </nav>
 
+            <h5 className="fw-bold text-danger text-uppercase mb-3 pb-2 border-bottom">Tìm Kiếm Source Code</h5>
+
+
+        </div>
+    );
 }
 
 export default SearchPage;
