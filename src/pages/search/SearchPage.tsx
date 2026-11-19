@@ -60,7 +60,55 @@ function SearchPage() {
 
             <h5 className="fw-bold text-danger text-uppercase mb-3 pb-2 border-bottom">Tìm Kiếm Source Code</h5>
 
+            <div className="card shadow-sm border-0 p-3 mb-3">
+                <form onSubmit={timKiem}>
+                    <div className="input-group">
+                        <input
+                            type="text"
+                            className="form-control"
+                            placeholder={che === 'ma' ? 'Nhập mã code, ví dụ 36495 hoặc TC36495' : 'Nhập tên đồ án, ngôn ngữ...'}
+                            value={o}
+                            onChange={(e) => setO(e.target.value)}
+                        />
+                        <button className="btn btn-danger" type="submit">
+                            <i className="bi bi-search me-1"></i> Tìm kiếm
+                        </button>
+                    </div>
+                    <div className="mt-2 small">
+                        <div className="form-check form-check-inline">
+                            <input className="form-check-input" type="radio" name="che" id="cheTen" checked={che === 'tu-khoa'} onChange={() => dispatch(setCheDoTim('tu-khoa'))} />
+                            <label className="form-check-label" htmlFor="cheTen">Theo từ khóa</label>
+                        </div>
 
+                    </div>
+                </form>
+            </div>
+
+            {!kw && (
+                <div className="card shadow-sm border-0 text-center text-muted py-5 small">
+                    Nhập từ khóa hoặc mã code để tìm kiếm
+                </div>
+            )}
+
+            {kw && (
+                <div className="small mb-2">
+                    Tìm thấy <b className="text-danger">{kq.length}</b> kết quả cho "<b>{kw}</b>"
+                </div>
+            )}
+
+            {kw && kq.length === 0 && (
+                <div className="card shadow-sm border-0 text-center text-muted py-5 small">
+                    Không tìm thấy source code nào
+                </div>
+            )}
+
+            <div className="row g-3">
+                {kq.map((c) => (
+                    <div key={c.id} className="col-6 col-md-4 col-xl-3">
+                        <CodeCard c={c} kieu="luoi" />
+                    </div>
+                ))}
+            </div>
         </div>
     );
 }
