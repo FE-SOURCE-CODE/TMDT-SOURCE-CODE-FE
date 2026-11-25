@@ -31,7 +31,11 @@ function ProductDetailPage() {
     );
   }
 
+  // code cao tu topcode chi co ten, anh, mo ta, nen cac danh sach ben duoi co the khong co
   const anhDemo = code.anhDemo || [];
+  const chucNang = code.chucNang || [];
+  const huongDanCaiDat = code.huongDanCaiDat || [];
+  const camKet = code.camKet || [];
   const danhGia = code.danhGia || [];
 
   return (
@@ -54,6 +58,16 @@ function ProductDetailPage() {
       <h5 className="fw-bold text-danger mb-3 pb-2 border-bottom">
         {code.tenCode}
       </h5>
+
+      {/* nguon du lieu cao tu topcode */}
+      {code.linkGoc && (
+        <div className="small text-muted mb-3">
+          Nguồn:{' '}
+          <a href={code.linkGoc} target="_blank" className="text-decoration-none">
+            topcode.vn
+          </a>
+        </div>
+      )}
 
       <div className="row g-3">
         {/* anh demo va nut xem live demo */}
@@ -93,24 +107,27 @@ function ProductDetailPage() {
                   <td className="fw-bold text-success">{code.maCode}</td>
                 </tr>
                 <tr>
+                  <th className="table-light">Ngôn ngữ</th>
+                  <td>{code.ngonNgu}</td>
+                </tr>
+                <tr>
+                  <th className="table-light">Thể loại</th>
+                  <td>{code.danhMuc}</td>
+                </tr>
+                <tr>
                   <th className="table-light">Ngày đăng</th>
                   <td>{code.ngayDang}</td>
                 </tr>
                 <tr>
-                  <th className="table-light">Loại file</th>
-                  <td>{code.loaiFile}</td>
+                  <th className="table-light">Lượt xem</th>
+                  <td>{code.luotXem}</td>
                 </tr>
                 <tr>
-                  <th className="table-light">Dung lượng</th>
-                  <td>{code.dungLuong}</td>
-                </tr>
-                <tr>
-                  <th className="table-light">Cơ sở dữ liệu</th>
-                  <td>{code.coSoDuLieu}</td>
-                </tr>
-                <tr>
-                  <th className="table-light">Lượt tải</th>
-                  <td>{code.luotTai}</td>
+                  <th className="table-light">Đánh giá</th>
+                  <td className="text-warning">
+                    {'★'.repeat(Math.round(code.soSao || 0))}
+                    <span className="text-muted ms-1">({code.soDanhGia || 0})</span>
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -170,21 +187,34 @@ function ProductDetailPage() {
               {tab === 'moTa' && (
                 <div>
                   <p>{code.moTa}</p>
-                  <ul>
-                    {code.chucNang.map((item, index) => (
-                      <li key={index}>{item}</li>
-                    ))}
-                  </ul>
+                  {chucNang.length > 0 && (
+                    <ul>
+                      {chucNang.map((item, index) => (
+                        <li key={index}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                  {code.linkGoc && (
+                    <a href={code.linkGoc} target="_blank" className="text-decoration-none">
+                      Xem mô tả đầy đủ trên topcode.vn &raquo;
+                    </a>
+                  )}
                 </div>
               )}
 
               {/* tab huong dan cai dat */}
-              {tab === 'caiDat' && (
+              {tab === 'caiDat' && huongDanCaiDat.length > 0 && (
                 <ol>
-                  {code.huongDanCaiDat.map((item, index) => (
+                  {huongDanCaiDat.map((item, index) => (
                     <li key={index}>{item}</li>
                   ))}
                 </ol>
+              )}
+
+              {tab === 'caiDat' && huongDanCaiDat.length === 0 && (
+                <div className="text-center text-muted py-4">
+                  Người bán gửi hướng dẫn cài đặt kèm file sau khi mua
+                </div>
               )}
 
               {/* tab danh gia */}
@@ -210,21 +240,22 @@ function ProductDetailPage() {
 
         {/* cam ket ho tro cua nguoi ban */}
         <div className="col-lg-4">
-          <div className="hop-cam-ket">
-            <div className="fw-bold text-danger small mb-2">
-              <i className="bi bi-shield-check me-1"></i> CAM KẾT CỦA NGƯỜI BÁN
+          {camKet.length > 0 && (
+            <div className="hop-cam-ket mb-3">
+              <div className="fw-bold text-danger small mb-2">
+                <i className="bi bi-shield-check me-1"></i> CAM KẾT CỦA NGƯỜI BÁN
+              </div>
+              <ul className="small mb-0 ps-3">
+                {camKet.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
             </div>
-            <ul className="small mb-0 ps-3">
-              {code.camKet.map((item, index) => (
-                <li key={index}>{item}</li>
-              ))}
-            </ul>
-          </div>
+          )}
 
-          <div className="card shadow-sm border-0 p-3 mt-3 small">
+          <div className="card shadow-sm border-0 p-3 small">
             <div className="text-muted">Người bán</div>
             <div className="fw-bold text-danger">{code.nguoiBan}</div>
-            <div className="text-muted">Đã bán: {code.soCodeDaBan} code</div>
           </div>
         </div>
       </div>
