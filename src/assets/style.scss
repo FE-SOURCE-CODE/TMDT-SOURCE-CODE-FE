@@ -280,3 +280,31 @@ body{
     padding: 8px 10px;
   }
 }
+
+.my-uploads{
+  .o-tim-kiem{
+    width: 220px;
+    border-radius: 20px;
+  }
+
+  .o-sap-xep{
+    width: 160px;
+  }
+
+  .nav-tabs .nav-link{
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .nav-tabs .nav-link.active{
+    color: #333;
+  }
+
+  .anh-nho{
+    width: 48px;
+    height: 36px;
+    object-fit: cover;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+}

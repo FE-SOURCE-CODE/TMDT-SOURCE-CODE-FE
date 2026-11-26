@@ -28,7 +28,8 @@ const initialState = {
       ],
       ngayDang: '2026-11-02 14:20:00',
       luotTai: 3,
-      trangThai: 'Đang hiển thị bán',
+      luotXem: 86,
+      trangThai: 'Đang đăng bán',
       lyDoTuChoi: '',
     },
     {
@@ -55,6 +56,7 @@ const initialState = {
       ],
       ngayDang: '2026-11-16 09:05:00',
       luotTai: 0,
+      luotXem: 0,
       trangThai: 'Đang chờ duyệt',
       lyDoTuChoi: '',
     },
@@ -79,6 +81,7 @@ const initialState = {
       huongDanCaiDat: ['Mở file index.html bằng trình duyệt'],
       ngayDang: '2026-11-10 20:30:00',
       luotTai: 0,
+      luotXem: 0,
       trangThai: 'Bị từ chối',
       lyDoTuChoi: 'Thiếu ảnh demo và cam kết hỗ trợ',
     },
@@ -92,7 +95,7 @@ const sellerSlice = createSlice({
   reducers: {
     // code mới luôn phải chờ duyệt, thêm lên đầu để bảng quản lý thấy ngay
     themCodeUpload: (state, action: PayloadAction<any>) => {
-      state.danhSachUpload.unshift({ ...action.payload, trangThai: 'Đang chờ duyệt', lyDoTuChoi: '' });
+      state.danhSachUpload.unshift({ ...action.payload, luotXem: 0, trangThai: 'Đang chờ duyệt', lyDoTuChoi: '' });
     },
   },
 });

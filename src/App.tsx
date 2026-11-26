@@ -7,6 +7,7 @@ import PurchasedCodesPage from './pages/purchased/PurchasedCodesPage';
 import DepositQrModal from './components/DepositQrModal';
 import ProductDetailPage from './pages/product/ProductDetailPage';
 import UploadCodePage from './pages/seller/UploadCodePage';
+import MyUploadsPage from './pages/seller/MyUploadsPage';
 
 function App() {
   const [showDepositModal, setShowDepositModal] = useState(false);
@@ -73,6 +74,7 @@ function App() {
               <Route path="/code/:maCode" element={<ProductDetailPage />} />
               <Route path="/detail/:maCode" element={<ProductDetailPage />} />
               <Route path="/dashboard/dang-ban" element={<UploadCodePage />} />
+              <Route path="/dashboard/code-upload" element={<MyUploadsPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
