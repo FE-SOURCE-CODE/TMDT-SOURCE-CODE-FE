@@ -239,3 +239,76 @@ body{
     word-break: break-all;
   }
 }
+
+// form đăng bán code
+.upload-code{
+  .tieu-de-nhom{
+    font-weight: bold;
+    color: $primary-color;
+    text-transform: uppercase;
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 4px;
+    margin-bottom: 12px;
+  }
+
+  .khung-anh{
+    @include flex-center;
+    height: 120px;
+    background-color: #e9ecef;
+    border: 1px dashed $border-color;
+    border-radius: 6px;
+    overflow: hidden;
+
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .anh-demo-nho{
+    width: 90px;
+    height: 68px;
+    object-fit: cover;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+  .goi-y-seo{
+    background-color: #f8f9fa;
+    border: 1px dashed $border-color;
+    border-radius: 6px;
+    padding: 8px 10px;
+  }
+}
+
+.my-uploads{
+  .o-tim-kiem{
+    width: 220px;
+    border-radius: 20px;
+  }
+
+  .o-sap-xep{
+    width: 160px;
+  }
+
+  .nav-tabs .nav-link{
+    color: $primary-color;
+    font-weight: bold;
+  }
+
+  .nav-tabs .nav-link.active{
+    color: #333;
+  }
+
+  .anh-nho{
+    width: 48px;
+    height: 36px;
+    object-fit: cover;
+    border: 1px solid $border-color;
+    border-radius: 4px;
+  }
+}
+
+.nen-modal{
+  background-color: rgba(0, 0, 0, 0.5);
+}

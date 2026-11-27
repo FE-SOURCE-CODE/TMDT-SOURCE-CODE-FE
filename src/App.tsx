@@ -6,6 +6,8 @@ import DepositHistoryPage from './pages/deposit/DepositHistoryPage';
 import PurchasedCodesPage from './pages/purchased/PurchasedCodesPage';
 import DepositQrModal from './components/DepositQrModal';
 import ProductDetailPage from './pages/product/ProductDetailPage';
+import UploadCodePage from './pages/seller/UploadCodePage';
+import MyUploadsPage from './pages/seller/MyUploadsPage';
 
 function App() {
   const [showDepositModal, setShowDepositModal] = useState(false);
@@ -29,9 +31,9 @@ function App() {
             >
               <i className="bi bi-wallet2 me-1"></i> NẠP TIỀN
             </button>
-            <button className="btn btn-danger btn-sm fw-bold px-3">
+            <Link to="/dashboard/dang-ban" className="btn btn-danger btn-sm fw-bold px-3">
               <i className="bi bi-cloud-arrow-up-fill me-1"></i> UPLOAD
-            </button>
+            </Link>
           </div>
 
           <div className="d-flex align-items-center ms-auto gap-3">
@@ -71,6 +73,8 @@ function App() {
               <Route path="/dashboard/code-da-mua" element={<PurchasedCodesPage />} />
               <Route path="/code/:maCode" element={<ProductDetailPage />} />
               <Route path="/detail/:maCode" element={<ProductDetailPage />} />
+              <Route path="/dashboard/dang-ban" element={<UploadCodePage />} />
+              <Route path="/dashboard/code-upload" element={<MyUploadsPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>

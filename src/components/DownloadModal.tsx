@@ -46,8 +46,10 @@ function DownloadModal({ code, onClose }) {
         anh: code.anh,
         ngayMua: ngayMua,
         phiTai: code.phiTai,
-        sdtNguoiBan: code.sdtNguoiBan,
-        linkDownload: code.linkDownload,
+        nguoiBan: code.nguoiBan,
+        sdtNguoiBan: code.sdtNguoiBan || '',
+        // code lấy từ TopCode không có link tải thật, lưu tạm trang gốc của code đó
+        linkDownload: code.linkDownload || code.linkGoc,
       })
     );
     setVuaMua(true);
@@ -80,7 +82,10 @@ function DownloadModal({ code, onClose }) {
 
                 <div className="hop-link mb-3">
                   <div className="fw-bold text-success">LINK DOWNLOAD</div>
-                  <a href={code.linkDownload} target="_blank">{code.linkDownload}</a>
+                  <a href={code.linkDownload || code.linkGoc} target="_blank">{code.linkDownload || code.linkGoc}</a>
+                  {!code.linkDownload && (
+                    <div className="text-muted mt-1">TopCode chỉ đưa link tải thật cho người đã mua, đây là trang của code trên TopCode</div>
+                  )}
 
                   {code.linkDuPhong && (
                     <div className="mt-2">
@@ -92,8 +97,8 @@ function DownloadModal({ code, onClose }) {
 
                 <div className="fw-bold mb-1">Thông tin liên hệ NGƯỜI BÁN</div>
                 <div>Người bán: {code.nguoiBan}</div>
-                <div>Email: {code.emailNguoiBan}</div>
-                <div>SĐT/Zalo: {code.sdtNguoiBan}</div>
+                <div>Email: {code.emailNguoiBan || 'Chỉ hiện trên TopCode sau khi mua'}</div>
+                <div>SĐT/Zalo: {code.sdtNguoiBan || 'Chỉ hiện trên TopCode sau khi mua'}</div>
               </div>
             )}
 

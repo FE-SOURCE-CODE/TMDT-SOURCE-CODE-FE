@@ -66,7 +66,7 @@ function DashboardSidebar() {
           Quản lý
         </div>
         <div className="list-group list-group-flush small">
-          <Link to="/dashboard" className="list-group-item list-group-item-action d-flex align-items-center border-0 px-2 py-2">
+          <Link to="/dashboard/code-upload" className="list-group-item list-group-item-action d-flex align-items-center border-0 px-2 py-2">
             <i className="bi bi-cloud-arrow-up-fill text-info me-2 fs-5"></i>
             <div>
               <div className="fw-semibold">Code upload</div>
