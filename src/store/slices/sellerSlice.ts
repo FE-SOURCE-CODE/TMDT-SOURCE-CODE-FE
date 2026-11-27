@@ -97,8 +97,17 @@ const sellerSlice = createSlice({
     themCodeUpload: (state, action: PayloadAction<any>) => {
       state.danhSachUpload.unshift({ ...action.payload, luotXem: 0, trangThai: 'Đang chờ duyệt', lyDoTuChoi: '' });
     },
+    doiGiaCode: (state, action: PayloadAction<any>) => {
+      const code = state.danhSachUpload.find((item) => item.maCode === action.payload.maCode);
+      if (code) {
+        code.phiTai = action.payload.phiTai;
+      }
+    },
+    xoaCodeUpload: (state, action: PayloadAction<string>) => {
+      state.danhSachUpload = state.danhSachUpload.filter((item) => item.maCode !== action.payload);
+    },
   },
 });
 
-export const { themCodeUpload } = sellerSlice.actions;
+export const { themCodeUpload, doiGiaCode, xoaCodeUpload } = sellerSlice.actions;
 export default sellerSlice.reducer;

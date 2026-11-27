@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import { doiGiaCode, xoaCodeUpload } from '../../store/slices/sellerSlice';
 
 function MyUploadsPage() {
+  const dispatch = useDispatch();
   const danhSachUpload = useSelector((state: RootState) => state.seller.danhSachUpload);
 
   const [tabDangChon, setTabDangChon] = useState('Tất cả');
@@ -11,6 +13,11 @@ function MyUploadsPage() {
   const [sapXep, setSapXep] = useState('moiNhat');
   const [trangHienTai, setTrangHienTai] = useState(1);
   const soDongMoiTrang = 5;
+
+  // code đang được đổi giá, null là đang đóng popup
+  const [codeDoiGia, setCodeDoiGia] = useState(null);
+  const [giaMoi, setGiaMoi] = useState('');
+  const [loiGia, setLoiGia] = useState('');
 
   const cacTab = ['Tất cả', 'Đang đăng bán', 'Đang chờ duyệt', 'Bị từ chối', 'Bị hủy'];
 
@@ -60,6 +67,40 @@ function MyUploadsPage() {
   for (let i = 1; i <= tongSoTrang; i++) {
     cacSoTrang.push(i);
   }
+
+  const moDoiGia = (code) => {
+    setCodeDoiGia(code);
+    setGiaMoi(String(code.phiTai));
+    setLoiGia('');
+  };
+
+  const luuGiaMoi = () => {
+    if (giaMoi.trim() === '') {
+      setLoiGia('Bạn chưa nhập phí download mới');
+      return;
+    }
+    // giữ cùng quy định với form đăng bán
+    if (Number(giaMoi) < 0 || Number(giaMoi) % 1000 !== 0) {
+      setLoiGia('Phí download phải từ 0đ trở lên và chẵn nghìn');
+      return;
+    }
+    if (Number(giaMoi) === codeDoiGia.phiTai) {
+      setLoiGia('Phí mới đang giống phí cũ');
+      return;
+    }
+
+    dispatch(doiGiaCode({ maCode: codeDoiGia.maCode, phiTai: Number(giaMoi) }));
+    setCodeDoiGia(null);
+  };
+
+  const xoaCode = (code) => {
+    // xóa rồi không lấy lại được nên phải hỏi lại trước
+    const dongY = window.confirm('Bạn chắc chắn muốn xóa code ' + code.maCode + ' - ' + code.tenCode + '?');
+    if (!dongY) {
+      return;
+    }
+    dispatch(xoaCodeUpload(code.maCode));
+  };
 
   const mauTrangThai = (trangThai) => {
     if (trangThai === 'Đang đăng bán') {
@@ -138,6 +179,9 @@ function MyUploadsPage() {
                   <th className="text-end">Phí download</th>
                   <th className="text-center">Download</th>
                   <th className="text-center">Lượt xem</th>
+                  <th className="text-center">
+                    <i className="bi bi-gear-fill"></i>
+                  </th>
                 </tr>
               </thead>
               <tbody>
@@ -158,12 +202,20 @@ function MyUploadsPage() {
                     </td>
                     <td className="text-center">{code.luotTai || 0}</td>
                     <td className="text-center">{code.luotXem || 0}</td>
+                    <td className="text-center text-nowrap">
+                      <button type="button" className="btn btn-outline-secondary btn-sm me-1" onClick={() => moDoiGia(code)}>
+                        <i className="bi bi-pencil-fill"></i> Đổi giá
+                      </button>
+                      <button type="button" className="btn btn-outline-danger btn-sm" onClick={() => xoaCode(code)}>
+                        <i className="bi bi-trash-fill"></i> Xóa
+                      </button>
+                    </td>
                   </tr>
                 ))}
 
                 {danhSachTrang.length === 0 && (
                   <tr>
-                    <td colSpan={9} className="text-center text-muted py-4 small">
+                    <td colSpan={10} className="text-center text-muted py-4 small">
                       Chưa có code nào
                     </td>
                   </tr>
@@ -203,6 +255,47 @@ function MyUploadsPage() {
           </div>
         </div>
       </div>
+
+      {codeDoiGia && (
+        <div className="modal d-block nen-modal" onClick={() => setCodeDoiGia(null)}>
+          <div className="modal-dialog modal-dialog-centered" onClick={(e) => e.stopPropagation()}>
+            <div className="modal-content">
+              <div className="modal-header py-2">
+                <h6 className="modal-title fw-bold text-danger">ĐỔI PHÍ DOWNLOAD</h6>
+                <button type="button" className="btn-close" onClick={() => setCodeDoiGia(null)}></button>
+              </div>
+              <div className="modal-body small">
+                <div className="mb-2">
+                  <span className="text-muted">Code:</span> <b>{codeDoiGia.maCode}</b> - {codeDoiGia.tenCode}
+                </div>
+                <div className="mb-2">
+                  <span className="text-muted">Phí hiện tại:</span>{' '}
+                  <b className="text-danger">{codeDoiGia.phiTai.toLocaleString('vi-VN')}đ</b>
+                </div>
+                <label className="form-label">Phí download mới (đ)</label>
+                <input
+                  type="number"
+                  className={loiGia ? 'form-control is-invalid' : 'form-control'}
+                  value={giaMoi}
+                  onChange={(e) => {
+                    setGiaMoi(e.target.value);
+                    setLoiGia('');
+                  }}
+                />
+                {loiGia && <div className="invalid-feedback">{loiGia}</div>}
+              </div>
+              <div className="modal-footer py-2">
+                <button type="button" className="btn btn-secondary btn-sm" onClick={() => setCodeDoiGia(null)}>
+                  Hủy
+                </button>
+                <button type="button" className="btn btn-danger btn-sm fw-bold" onClick={luuGiaMoi}>
+                  LƯU PHÍ MỚI
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
