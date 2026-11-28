@@ -40,7 +40,23 @@ const authSlice = createSlice({
                 ghiLS('nguoiDung', state.nguoiDung);
             }
         },
-
+        // dang nhap google / facebook: bam la vao luon
+        dangNhapMXH: (state, action: PayloadAction<string>) => {
+            const ten = action.payload;
+            state.nguoiDung = { hoTen: 'Người dùng ' + ten, tenDangNhap: ten.toLowerCase() + '_user', email: '', loai: ten.toLowerCase() };
+            ghiLS('nguoiDung', state.nguoiDung);
+        },
+        datLaiMatKhau: (state, action: PayloadAction<any>) => {
+            const tk = state.dsTaiKhoan.find((t) => t.email.toLowerCase() === action.payload.email.toLowerCase());
+            if (tk) {
+                tk.matKhau = action.payload.matKhau;
+                ghiLS('dsTaiKhoan', state.dsTaiKhoan);
+            }
+        },
+        dangXuat: (state) => {
+            state.nguoiDung = null;
+            localStorage.removeItem('nguoiDung');
+        },
     },
 });
 
