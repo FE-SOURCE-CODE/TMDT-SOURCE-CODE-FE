@@ -1,11 +1,18 @@
+import { useState } from 'react';
 import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import DashboardSidebar from './components/DashboardSidebar';
 import DashboardPage from './pages/dashboard/DashboardPage';
+import DepositHistoryPage from './pages/deposit/DepositHistoryPage';
+import PurchasedCodesPage from './pages/purchased/PurchasedCodesPage';
+import DepositQrModal from './components/DepositQrModal';
+import ProductDetailPage from './pages/product/ProductDetailPage';
 
 function App() {
+  const [showDepositModal, setShowDepositModal] = useState(false);
+
   return (
     <div className="app-container bg-light min-vh-100">
-      {/* thanh header topcode */}
+      {/* thanh header chinh */}
       <nav className="navbar navbar-expand-lg navbar-dark bg-white border-bottom shadow-sm py-2 sticky-top">
         <div className="container-fluid px-3 px-md-4">
           {/* logo code */}
@@ -16,7 +23,10 @@ function App() {
 
           {/* 2 nut nap tien va upload */}
           <div className="d-flex align-items-center gap-2">
-            <button className="btn btn-success btn-sm fw-bold px-3">
+            <button
+              className="btn btn-success btn-sm fw-bold px-3"
+              onClick={() => setShowDepositModal(true)}
+            >
               <i className="bi bi-wallet2 me-1"></i> NẠP TIỀN
             </button>
             <button className="btn btn-danger btn-sm fw-bold px-3">
@@ -37,10 +47,7 @@ function App() {
 
             <div className="d-flex align-items-center gap-2 border-start ps-3">
               <span className="fw-bold text-dark small">Nhân Trương</span>
-              <div 
-                className="rounded-circle bg-secondary bg-opacity-25 d-flex align-items-center justify-content-center"
-                style={{ width: '32px', height: '32px' }}
-              >
+              <div className="avatar-small">
                 <i className="bi bi-person text-secondary"></i>
               </div>
               <span className="text-danger small ms-1" role="button">[Thoát]</span>
@@ -60,11 +67,21 @@ function App() {
             <Routes>
               <Route path="/" element={<Navigate to="/dashboard" replace />} />
               <Route path="/dashboard" element={<DashboardPage />} />
+              <Route path="/dashboard/lich-su-nap" element={<DepositHistoryPage />} />
+              <Route path="/dashboard/code-da-mua" element={<PurchasedCodesPage />} />
+              <Route path="/code/:maCode" element={<ProductDetailPage />} />
+              <Route path="/detail/:maCode" element={<ProductDetailPage />} />
               <Route path="*" element={<Navigate to="/dashboard" replace />} />
             </Routes>
           </div>
         </div>
       </div>
+
+      {/* modal nap tien vietqr */}
+      <DepositQrModal
+        isOpen={showDepositModal}
+        onClose={() => setShowDepositModal(false)}
+      />
     </div>
   );
 }
