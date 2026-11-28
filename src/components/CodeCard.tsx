@@ -1,11 +1,11 @@
 import { Link } from 'react-router-dom';
 import { fmtGia, sao } from '../utils/text';
 
-
 function CodeCard({ c, kieu }: any) {
     const ctLink = '/code/' + c.maCode;
     const demoLink = '/live-demo/' + c.maCode;
     const demoCls = c.linkDemo ? 'btn btn-outline-danger btn-sm' : 'btn btn-outline-secondary btn-sm disabled';
+
     if (kieu === 'ds') {
         return (
             <div className="card code-card shadow-sm border-0 mb-3">
@@ -47,6 +47,7 @@ function CodeCard({ c, kieu }: any) {
             </div>
         );
     }
+
     return (
         <div className="card code-card h-100 shadow-sm border-0">
             <img src={c.anh} alt={c.tenCode} className="thumb" />
@@ -73,4 +74,5 @@ function CodeCard({ c, kieu }: any) {
         </div>
     );
 }
+
 export default CodeCard;
