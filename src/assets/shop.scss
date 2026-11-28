@@ -1,0 +1,145 @@
+$primary-color: #d9534f;
+$border-color: #e9ecef;
+
+.sub-small{
+  font-size: 11px;
+}
+
+.banner{
+  height: 100%;
+  min-height: 280px;
+  border-radius: 6px;
+  color: #fff;
+  padding: 40px 30px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+
+  &.bn1{
+    background: linear-gradient(135deg, #d9534f, #f0ad4e);
+  }
+  &.bn2{
+    background: linear-gradient(135deg, #5cb85c, #2e8b57);
+  }
+  &.bn3{
+    background: linear-gradient(135deg, #337ab7, #5bc0de);
+  }
+
+  .dots{
+    position: absolute;
+    bottom: 12px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .dot{
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    &.on{
+      background: #fff;
+    }
+  }
+}
+
+.hd-item{
+  min-height: 52px;
+  display: flex;
+  align-items: center;
+}
+
+.code-card{
+  .thumb{
+    width: 100%;
+    height: 140px;
+    object-fit: contain;
+    background-color: #e9ecef;
+    border-radius: 4px 4px 0 0;
+  }
+
+  .ten-code{
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    min-height: 38px;
+    &:hover{
+      color: $primary-color !important;
+    }
+  }
+
+  &:hover{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+  }
+}
+
+.tbl-top{
+  th.sortable{
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    &:hover{
+      color: $primary-color;
+    }
+  }
+
+  .anh-bang{
+    width: 50px;
+    height: 40px;
+    object-fit: contain;
+    background-color: #e9ecef;
+    border-radius: 3px;
+  }
+}
+
+.demo-wrap{
+  background-color: #dee2e6;
+  border-radius: 6px;
+  padding: 12px;
+  overflow-x: auto;
+
+  .demo-frame{
+    display: block;
+    margin: 0 auto;
+    max-width: 100%;
+    height: 620px;
+    border: 1px solid #adb5bd;
+    background-color: #fff;
+    transition: width 0.3s;
+  }
+}
+
+.auth-box{
+  max-width: 440px;
+  margin: 24px auto;
+
+  .hoac{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+
+    &::before,
+    &::after{
+      content: '';
+      flex: 1;
+      border-top: 1px solid $border-color;
+    }
+  }
+}
+
+.row:has(.shop-root) > .col-lg-3{
+  display: none;
+}
+
+.row:has(.shop-root) > .col-lg-9{
+  flex: 0 0 100%;
+  width: 100%;
+}
